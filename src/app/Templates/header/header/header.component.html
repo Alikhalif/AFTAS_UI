@@ -1,0 +1,67 @@
+<div>
+
+<!-- Navigation Bar -->
+  <!-- component -->
+  <header class="header sticky top-0 z-10 bg-white shadow-md flex items-center justify-between px-8 py-02">
+    <!-- logo -->
+    <h1 class="">
+        <a routerLink="/">
+          AFTAS
+        </a>
+    </h1>
+
+    <!-- navigation -->
+    <nav class="nav font-semibold text-lg">
+        <ul class="flex items-center">
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer active">
+              <a routerLink="/">Home</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a routerLink="/compitition-list">Compitition</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a href="">Hunting</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a routerLink="/member-list">Member</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a href="">Ranking</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a href="">Fish</a>
+            </li>
+            <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
+              <a href="">Level</a>
+            </li>
+
+
+        </ul>
+    </nav>
+
+    <!-- buttons --->
+    <div class="">
+        <a href="" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Get Started
+          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+    </div>
+  </header>
+
+
+  <div class="">
+    <ng-content></ng-content>
+  </div>
+
+
+  <footer class="bg-gray-800 text-white text-center py-4">
+    <div class="container mx-auto">
+      &copy; 2023 Professional Home. All rights reserved.
+    </div>
+  </footer>
+
+
+</div>
+

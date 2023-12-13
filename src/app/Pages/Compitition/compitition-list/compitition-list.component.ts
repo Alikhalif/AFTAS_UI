@@ -1,0 +1,95 @@
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { CompititionResponse, CompititionService } from 'src/app/Services/Compitition/compitition.service';
+
+@Component({
+  selector: 'app-compitition-list',
+  templateUrl: './compitition-list.component.html',
+  styleUrls: ['./compitition-list.component.css']
+})
+export class CompititionListComponent implements OnInit{
+  constructor(private compititionService: CompititionService,
+              private datePipe: DatePipe){}
+
+  CompititionList!:CompititionResponse[];
+  compititionUpdat!:CompititionResponse;
+  compSave!:CompititionResponse;
+
+  showPopup = false;
+
+  ngOnInit(){
+    this.getAllCompetitions();
+  }
+
+  getAllCompetitions(){
+    this.compititionService.getAllCompitition().subscribe((res:any) => {
+      console.log(res.message);
+      this.CompititionList = res.message;
+    });
+  }
+
+
+  deleteCompitition(id: string){
+    this.compititionService.deleteCompitition(id).subscribe({
+      next:(value)=>{
+        alert("Deleted Successfully");
+        this.getAllCompetitions();
+      }
+
+    })
+  }
+
+  editCompitition(compitition: CompititionResponse){
+    this.compititionUpdat=compitition;
+    console.log(this.compititionUpdat.code);
+
+    this.openPopup();
+  }
+
+  updateForm(){
+    var compititionSave = {
+      code: this.compititionUpdat.code,
+
+      date: this.compititionUpdat.date,
+
+      startTime: this.compititionUpdat.startTime,
+
+      endTime: this.compititionUpdat.endTime,
+
+      numberOfParticipants: this.compititionUpdat.numberOfParticipants,
+
+      location: this.compititionUpdat.location,
+
+      amount: this.compititionUpdat.amount
+    }
+
+
+    const dateFormat = 'dd-MM-yy';
+    const formattedDate = this.datePipe.transform(compititionSave.date, dateFormat);
+
+    const locationCode = compititionSave.location.slice(0, 3).toLowerCase();
+
+    const mcode = `${locationCode}-${formattedDate}`;
+    compititionSave.code = mcode;
+
+
+    this.compititionService.updateCompitition(compititionSave, this.compititionUpdat.code).subscribe({
+      next:(res: any) => {
+        console.log(res.message);
+      },
+      error:(err:any) => {
+        console.log(err.error);
+      }
+    })
+  }
+
+
+  openPopup() {
+    this.showPopup = true;
+  }
+
+  closePopup() {
+    this.showPopup = false;
+  }
+
+}
