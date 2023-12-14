@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MemberListComponent } from './Pages/Member/member-list/member-list.component';
+import { MemberCreateComponent } from './Pages/Member/member-create/member-create.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MemberListComponent } from './Pages/Member/member-list/member-list.comp
     HomeComponent,
     CompititionListComponent,
     CreateCompititionComponent,
-    MemberListComponent
+    MemberListComponent,
+    MemberCreateComponent
   ],
   imports: [
     BrowserModule,

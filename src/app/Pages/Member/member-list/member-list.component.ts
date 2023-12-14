@@ -11,7 +11,8 @@ export class MemberListComponent {
   constructor(private memberService: MemberService){}
 
   memberList!: MemberResponse[];
-
+  myMember!: MemberResponse;
+  showPopup = false;
 
   ngOnInit(){
     this.getAllMembers();
@@ -33,6 +34,35 @@ export class MemberListComponent {
       }
 
     })
+  }
+
+  editMember(member: MemberResponse){
+    this.myMember=member;
+    console.log(this.myMember.id);
+
+    this.openPopup();
+  }
+
+  updateForm(){
+    this.memberService.updateMember(this.myMember, this.myMember.id).subscribe({
+      next:(res: any) => {
+        console.log(res.message);
+      },
+      error:(err:any) => {
+        console.log(err.error);
+      },
+
+    });
+    this.closePopup()
+
+  }
+
+  openPopup() {
+    this.showPopup = true;
+  }
+
+  closePopup() {
+    this.showPopup = false;
   }
 
 }

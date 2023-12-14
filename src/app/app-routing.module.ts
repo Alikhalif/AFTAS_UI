@@ -4,6 +4,7 @@ import { HomeComponent } from './Templates/home/home.component';
 import { CompititionListComponent } from './Pages/Compitition/compitition-list/compitition-list.component';
 import { CreateCompititionComponent } from './Pages/Compitition/create-compitition/create-compitition.component';
 import { MemberListComponent } from './Pages/Member/member-list/member-list.component';
+import { MemberCreateComponent } from './Pages/Member/member-create/member-create.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home Page' },
@@ -14,6 +15,8 @@ const routes: Routes = [
 
   //member
   { path: 'member-list', component: MemberListComponent, title: 'Member List' },
+  { path: 'member-create', component: MemberCreateComponent, title: 'Member Create' },
+
 
 ];
 
