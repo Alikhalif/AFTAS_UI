@@ -17,7 +17,7 @@ export class HuntingService {
 
   constructor(private httpClient:HttpClient) { }
 
-  saveHunting(inputData: Object){
+  saveHunting(inputData: object[]){
     return this.httpClient.post(`http://localhost:8080/api/hunting`,inputData);
   }
 

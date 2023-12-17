@@ -8,10 +8,12 @@ import { HomeComponent } from './Templates/home/home.component';
 import { CompititionListComponent } from './Pages/Compitition/compitition-list/compitition-list.component';
 import { CreateCompititionComponent } from './Pages/Compitition/create-compitition/create-compitition.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MemberListComponent } from './Pages/Member/member-list/member-list.component';
 import { MemberCreateComponent } from './Pages/Member/member-create/member-create.component';
+import { StartCompititionComponent } from './Pages/Hunting/start-compitition/start-compitition.component';
+import { CreateHuntingComponent } from './Pages/Hunting/create-hunting/create-hunting.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,16 @@ import { MemberCreateComponent } from './Pages/Member/member-create/member-creat
     CompititionListComponent,
     CreateCompititionComponent,
     MemberListComponent,
-    MemberCreateComponent
+    MemberCreateComponent,
+    StartCompititionComponent,
+    CreateHuntingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

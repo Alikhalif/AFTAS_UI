@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface FishResponse{
   name: string,
@@ -22,8 +23,12 @@ export class FishService {
     return this.httpClient.get('http://localhost:8080/api/fish/all');
   }
 
-  getOne(fishId: Number){
-    return this.httpClient.get(`http://localhost:8080/api/fish/${fishId}`);
+  searchMembersByName(name: string): Observable<FishResponse[]> {
+    return this.httpClient.get<FishResponse[]>(`http://localhost:8080/api/fish/search?name=${name}`);
+  }
+
+  getOne(fishName: string) {
+    return this.httpClient.get(`http://localhost:8080/api/fish/${fishName}`);
   }
 
   updateFish(inputData: Object, fishId: number){
