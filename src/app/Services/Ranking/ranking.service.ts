@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MemberResponse } from '../Member/member.service';
 
 export interface RankingResponse{
 
@@ -6,9 +8,9 @@ export interface RankingResponse{
 
   score : number,
 
-  member_id : number,
+  member : MemberResponse,
 
-  competition_id : number,
+  competition : MemberResponse,
 }
 
 
@@ -17,5 +19,15 @@ export interface RankingResponse{
 })
 export class RankingService {
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
+
+  saveRanking(compName: string){
+    return this.httpClient.get(`http://localhost:8080/api/ranking/calculate/${compName}`);
+  }
+
+  getTop3Rank(compName: string){
+    return this.httpClient.get(`http://localhost:8080/api/ranking/top3/${compName}`);
+  }
+
+
 }

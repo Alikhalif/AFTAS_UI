@@ -14,6 +14,7 @@ import { MemberListComponent } from './Pages/Member/member-list/member-list.comp
 import { MemberCreateComponent } from './Pages/Member/member-create/member-create.component';
 import { StartCompititionComponent } from './Pages/Hunting/start-compitition/start-compitition.component';
 import { CreateHuntingComponent } from './Pages/Hunting/create-hunting/create-hunting.component';
+import { PodiumComponent } from './Pages/podium/podium.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateHuntingComponent } from './Pages/Hunting/create-hunting/create-hu
     MemberListComponent,
     MemberCreateComponent,
     StartCompititionComponent,
-    CreateHuntingComponent
+    CreateHuntingComponent,
+    PodiumComponent
   ],
   imports: [
     BrowserModule,

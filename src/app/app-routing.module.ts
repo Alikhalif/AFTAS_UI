@@ -7,6 +7,7 @@ import { MemberListComponent } from './Pages/Member/member-list/member-list.comp
 import { MemberCreateComponent } from './Pages/Member/member-create/member-create.component';
 import { StartCompititionComponent } from './Pages/Hunting/start-compitition/start-compitition.component';
 import { CreateHuntingComponent } from './Pages/Hunting/create-hunting/create-hunting.component';
+import { PodiumComponent } from './Pages/podium/podium.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home Page' },
@@ -22,6 +23,10 @@ const routes: Routes = [
   //hunting
   { path: 'compitition-start', component: StartCompititionComponent, title: 'Compitition Start' },
   { path: 'hunting-create/:code', component: CreateHuntingComponent, title: 'Hunting Create' },
+
+
+  //podium
+  { path: 'podium/:code', component: PodiumComponent, title: 'Podium' },
 
 
 

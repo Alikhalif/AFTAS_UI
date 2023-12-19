@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { MemberResponse, MemberService } from 'src/app/Services/Member/member.service';
 import { Hunting } from 'src/app/Model/hunting';
 import { HuntingService } from 'src/app/Services/Hunting/hunting.service';
+import { RankingService } from 'src/app/Services/Ranking/ranking.service';
 
 @Component({
   selector: 'app-create-hunting',
@@ -33,14 +34,17 @@ export class CreateHuntingComponent implements OnInit{
               private memberService: MemberService,
               private fishService: FishService,
               private huntingService: HuntingService,
+              private rankingService: RankingService,
               private route: ActivatedRoute){}
 
   myCompitition!:CompititionResponse;
   memberList!: MemberResponse[];
   fishList!: FishResponse[];
+  fishSelected!: FishResponse;
 
   compititionId!:any
   error!: any[]
+  showPopup = false
 
 
   ngOnInit(){
@@ -88,7 +92,8 @@ export class CreateHuntingComponent implements OnInit{
     this.fishService.getOne(selectedFishId).subscribe({
       next: (res: any) => {
         console.log(res.message, 'response');
-        alert("selected successfuly");
+        this.fishSelected = res.message
+        // alert("selected successfuly");
       },
       error: (err: any) => {
         this.error = err;
@@ -96,6 +101,12 @@ export class CreateHuntingComponent implements OnInit{
       },
     });
 
+    this.showPopup = true;
+
+  }
+
+  closePopup(){
+    this.showPopup = false;
   }
 
 
@@ -116,12 +127,22 @@ export class CreateHuntingComponent implements OnInit{
         error: (err: any) => {
           this.error = err;
           console.log(err.error, 'errors');
+          alert("Competition is closed");
         },
       });
     }
     else{
       alert("Please enter nomber of fish")
     }
+
+  }
+
+
+
+  saveRank(code:string){
+    this.rankingService.saveRanking(code).subscribe((res:any) => {
+      console.log(res.message);
+    });
 
   }
 
