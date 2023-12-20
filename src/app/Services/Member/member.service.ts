@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 export interface MemberResponse{
@@ -53,5 +54,11 @@ export class MemberService {
     return this.httpClient.delete(`http://localhost:8080/api/member/${memberId}`);
   }
 
+  getMembersWithPagination(page: number, size: number): Observable<MemberResponse[]> {
+    const params = new HttpParams()
+                  .set('page', page.toString())
+                  .set('size', size.toString());
+    return this.httpClient.get<MemberResponse[]>(`http://localhost:8080/api/member/paginated`,{params});
+  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CompititionResponse, CompititionService } from 'src/app/Services/Compitition/compitition.service';
 import { Observable } from 'rxjs';
 import { debounceTime, switchMap, tap } from 'rxjs/operators';
@@ -35,7 +35,8 @@ export class CreateHuntingComponent implements OnInit{
               private fishService: FishService,
               private huntingService: HuntingService,
               private rankingService: RankingService,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute,
+              private router: Router){}
 
   myCompitition!:CompititionResponse;
   memberList!: MemberResponse[];
@@ -45,6 +46,8 @@ export class CreateHuntingComponent implements OnInit{
   compititionId!:any
   error!: any[]
   showPopup = false
+
+
 
 
   ngOnInit(){
@@ -142,6 +145,7 @@ export class CreateHuntingComponent implements OnInit{
   saveRank(code:string){
     this.rankingService.saveRanking(code).subscribe((res:any) => {
       console.log(res.message);
+      this.router.navigate(['/podium/'+code])
     });
 
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 export interface CompititionResponse{
@@ -44,5 +45,12 @@ export class CompititionService {
 
   deleteCompitition(compititionId:string){
     return this.httpClient.delete(`http://localhost:8080/api/compitition/${compititionId}`);
+  }
+
+  getCompititionWithPagination(page: number, size: number): Observable<CompititionResponse[]> {
+    const params = new HttpParams()
+                  .set('page', page.toString())
+                  .set('size', size.toString());
+    return this.httpClient.get<CompititionResponse[]>(`http://localhost:8080/api/compitition/paginated`,{params});
   }
 }

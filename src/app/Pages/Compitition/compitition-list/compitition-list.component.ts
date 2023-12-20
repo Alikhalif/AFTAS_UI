@@ -17,8 +17,29 @@ export class CompititionListComponent implements OnInit{
 
   showPopup = false;
 
+  page:number = 0;
+  size:number = 10;
+
   ngOnInit(){
     this.getAllCompetitions();
+  }
+
+  loadCompititions(): void {
+    this.compititionService.getCompititionWithPagination(this.page, this.size)
+      .subscribe(data => this.CompititionList = data);
+  }
+
+  onPageChange(Ppage: number) {
+    this.page = Ppage
+    this.loadCompititions();
+
+    this.getNumberPages();
+  }
+
+  getNumberPages(){
+    const totalCompitition = this.CompititionList.length;
+    const totalPages = Math.ceil(totalCompitition / this.size);
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
   getAllCompetitions(){
