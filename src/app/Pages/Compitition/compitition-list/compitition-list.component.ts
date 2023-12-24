@@ -17,6 +17,8 @@ export class CompititionListComponent implements OnInit{
 
   showPopup = false;
 
+  searchTerm: string = '';
+
   page:number = 0;
   size:number = 10;
 
@@ -40,6 +42,13 @@ export class CompititionListComponent implements OnInit{
     const totalCompitition = this.CompititionList.length;
     const totalPages = Math.ceil(totalCompitition / this.size);
     return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  filtered(): CompititionResponse[] {
+    return this.CompititionList.filter(compitition =>
+      compitition.location.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      compitition.code.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   getAllCompetitions(){

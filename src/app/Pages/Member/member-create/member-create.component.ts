@@ -56,6 +56,25 @@ export class MemberCreateComponent {
 
       }
     });
+
+    this.clear()
+  }
+
+
+  clear(){
+    this.myMember = {
+      name: '',
+
+      familyName: '',
+
+      accessionDate: new Date,
+
+      nationality: '',
+
+      identityDocument: '',
+
+      identityNumber: ''
+    }
   }
 
 }

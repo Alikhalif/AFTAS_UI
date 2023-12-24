@@ -80,6 +80,8 @@ export class CreateCompititionComponent {
       }
     });
 
+    this.clear()
+
 
   }
 
@@ -92,7 +94,23 @@ export class CreateCompititionComponent {
   }
 
 
+  clear(){
+    this.mycompitition = {
+      code: '',
 
+      date: new Date,
+
+      startTime: new Date,
+
+      endTime: new Date,
+
+      numberOfParticipants: 0,
+
+      location: '',
+
+      amount: 0
+    }
+  }
 
 
 }

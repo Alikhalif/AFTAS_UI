@@ -15,13 +15,14 @@ export class MemberListComponent {
   myMember!: MemberResponse;
   showPopup = false;
 
+  searchTerm: string = '';
+
   page:number = 0;
   size:number = 10;
 
   ngOnInit(){
     // this.getAllMembers();
     this.loadMembers();
-
   }
 
   loadMembers(): void {
@@ -49,6 +50,15 @@ export class MemberListComponent {
   //   });
   // }
 
+  filteredMembers(): MemberResponse[] {
+    // console.log(this.searchTerm);
+
+    return this.memberList.filter(member =>
+      member.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      member.familyName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
   deleteMember(id: number){
     this.memberService.deleteMember(id).subscribe({
       next:(value)=>{
@@ -56,8 +66,8 @@ export class MemberListComponent {
         // this.getAllMembers();
 
       }
-
-    })
+    });
+    this.loadMembers()
   }
 
   editMember(member: MemberResponse){

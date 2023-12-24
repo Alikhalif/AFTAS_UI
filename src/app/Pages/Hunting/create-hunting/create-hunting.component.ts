@@ -138,19 +138,48 @@ export class CreateHuntingComponent implements OnInit{
       alert("Please enter nomber of fish")
     }
 
+
+    this.clear()
+
   }
 
 
 
+  // saveRank(code:string){
+  //   this.rankingService.saveRanking(code).subscribe((res:any) => {
+  //     console.log(res.message);
+  //     this.router.navigate(['/podium/'+code])
+  //   });
+
+  // }
+
   saveRank(code:string){
-    this.rankingService.saveRanking(code).subscribe((res:any) => {
-      console.log(res.message);
-      this.router.navigate(['/podium/'+code])
+    this.rankingService.saveRanking(code).subscribe({
+      next: (res:any) => {
+        console.log(res.message);
+        this.router.navigate(['/podium/'+code])
+      },
+      error: (err: any) => {
+        this.error = err;
+        console.log(err.error, 'errors');
+        alert("eee"+err.error);
+      }
+
     });
 
   }
 
 
+  clear(){
+    this.myHunting = [{
+      // id:0,
+      nomberOfFish: 0,
+      fish_id: 0,
+      member_id: 0,
+      competition_id: 0
+
+    }]
+  }
 
 
 }

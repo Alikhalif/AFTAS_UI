@@ -4,6 +4,9 @@
   <div class="flex justify-between w-full items-center gap-x-3">
     <h2 class="text-lg font-medium text-gray-800 ">Team members</h2>
 
+    <input name="searchTerm" [(ngModel)]="searchTerm" (input)="filteredMembers()" placeholder="Search by name or family Name" class="w-1/3 p-2 border rounded ">
+
+
     <div>
       <button (click)="popupForm.openPopup()" class="Btn bg-black">
         <div class="sign">
@@ -70,7 +73,7 @@
                       <tbody class="bg-white divide-y divide-gray-200 ">
 
 
-                          <tr *ngFor="let member of this.memberList; let i = index">
+                          <tr *ngFor="let member of filteredMembers(); let i = index">
                               <td class="px-4 py-4 text-sm text-gray-400  whitespace-nowrap">
                                 <div class="inline-flex items-center gap-x-3">
 
