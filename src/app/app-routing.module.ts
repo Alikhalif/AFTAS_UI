@@ -8,25 +8,110 @@ import { MemberCreateComponent } from './Pages/Member/member-create/member-creat
 import { StartCompititionComponent } from './Pages/Hunting/start-compitition/start-compitition.component';
 import { CreateHuntingComponent } from './Pages/Hunting/create-hunting/create-hunting.component';
 import { PodiumComponent } from './Pages/podium/podium.component';
+import { LoginComponent } from './Pages/Auth/login/login.component';
+import { RegisterComponent } from './Pages/Auth/register/register.component';
+import { authenticationGuardGuard } from './Guards/authentication-guard.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'Home Page' },
+  { path: '', component: HomeComponent, title: 'Home Page',
+    data: {
+      roles: ['USER','MEMBER', 'JURY', 'ADMIN'],
+    },
+  },
+
+  //login
+  {
+    path: 'auth/login',
+    component: LoginComponent,
+    title: 'Login',
+    
+  },
+
+  {
+    path: 'auth/register',
+    component: RegisterComponent,
+    title: 'Register',
+    data: {
+      showAuth: true,
+    },
+  },
 
   //compitition
-  { path: 'compitition-list', component: CompititionListComponent, title: 'Compitition List' },
-  { path: 'compitition-create', component: CreateCompititionComponent, title: 'Compitition Create' },
+  {
+    path: 'compitition-list',
+    component: CompititionListComponent,
+    title: 'Compitition List',
+
+    canActivate: [authenticationGuardGuard],
+    data: {
+      roles: ['MEMBER', 'JURY', 'ADMIN'],
+    },
+
+  },
+  {
+    path: 'compitition-create',
+    component: CreateCompititionComponent,
+    title: 'Compitition Create',
+    canActivate: [authenticationGuardGuard],
+    data: {
+      roles: ['JURY', 'ADMIN'],
+    },
+  },
 
   //member
-  { path: 'member-list', component: MemberListComponent, title: 'Member List' },
-  { path: 'member-create', component: MemberCreateComponent, title: 'Member Create' },
+  {
+    path: 'member-list',
+    component: MemberListComponent,
+    title: 'Member List',
+    canActivate: [authenticationGuardGuard],
+    data: {
+      roles: ['ADMIN'],
+    },
+  },
+
+  {
+    path: 'member-create',
+    component: MemberCreateComponent,
+    title: 'Member Create',
+    canActivate: [authenticationGuardGuard],
+    data: {
+      roles: ['ADMIN'],
+    },
+  },
 
   //hunting
-  { path: 'compitition-start', component: StartCompititionComponent, title: 'Compitition Start' },
-  { path: 'hunting-create/:code', component: CreateHuntingComponent, title: 'Hunting Create' },
+  {
+    path: 'compitition-start',
+    component: StartCompititionComponent,
+    title: 'Compitition Start' ,
+    canActivate:[authenticationGuardGuard],
+    data: {
+      roles: ['JURY', 'ADMIN'],
+    },
 
+  },
+  {
+    path: 'hunting-create/:code',
+    component: CreateHuntingComponent,
+    title: 'Hunting Create',
+    canActivate:[authenticationGuardGuard],
+    data: {
+      roles: ['JURY', 'ADMIN'],
+    },
+  },
 
   //podium
-  { path: 'podium/:code', component: PodiumComponent, title: 'Podium' },
+  {
+    path: 'podium/:code',
+    component: PodiumComponent,
+    title: 'Podium',
+    canActivate:[authenticationGuardGuard],
+    data: {
+      roles: ['JURY', 'ADMIN'],
+    },
+  },
+
+
 
 
 

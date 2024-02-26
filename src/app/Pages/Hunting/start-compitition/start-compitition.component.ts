@@ -30,18 +30,14 @@ export class StartCompititionComponent {
   filterCompetitionsByDate(dateFilter: 'old' | 'present' | 'future'): void {
     const currentDate = new Date();
     // this.CompititionList = this.getAllCompetitions();
-    this.CompititionList = this.CompititionList.filter(comp => {
-      const compDate = new Date(comp.date);
-
-      if (dateFilter === 'old') {
-        return compDate.toDateString() < currentDate.toDateString();
-      } else if (dateFilter === 'present') {
-        return compDate.toDateString() === currentDate.toDateString();
-      } else if (dateFilter === 'future'){
-        return compDate.toDateString() > currentDate.toDateString();
-      }else{
-        return this.getAllCompetitions();
-      }
-    });
+    if (dateFilter === 'old') {
+      this.CompititionList = this.CompititionList.filter(comp => new Date(comp.date).toDateString() < currentDate.toDateString());
+    } else if (dateFilter === 'present') {
+        this.CompititionList = this.CompititionList.filter(comp => new Date(comp.date).toDateString() === currentDate.toDateString());
+    } else if (dateFilter === 'future') {
+        this.CompititionList = this.CompititionList.filter(comp => new Date(comp.date).toDateString() > currentDate.toDateString());
+    } else {
+        this.getAllCompetitions();
+    }
   }
 }
